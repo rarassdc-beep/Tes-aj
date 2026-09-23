@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUCLIC - Nuclear Outreach Project</title>
+    <!-- Pixel Font Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette 1 & 2 Combos */
+            --old-lace: #FFF8E9;
+            --grapefruit-pink: #FE6D73;
+            --apricot-cream: #FFCB77;
+            --turquoise: #24E5D2;
+            --cerulean: #2584A7;
+            --buttercup-sky: #FFF2B2;
+            --dewy-blue: #A8C6E7;
+            --sunwashed: #FFE08A;
+            --cloud-puff: #FFF7D6;
+            --morning-breeze: #7FA8D6;
+            
+            --pixel-font: 'Press Start 2P', monospace;
+            --subtitle-font: 'VT323', monospace;
+            --body-font: 'Fredoka', sans-serif;
+            --border-pixel: 4px solid #2584A7;
+            --box-shadow-pixel: 4px 4px 0px #2584A7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--cloud-puff);
+            color: #2c3e50;
+            font-family: var(--body-font);
+            overflow-x: hidden;
+            background-image: radial-gradient(var(--dewy-blue) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Top Bar & Audio Controls */
+        header {
+            background: var(--cerulean);
+            border-bottom: var(--border-pixel);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: var(--pixel-font);
+            font-size: 1.2rem;
+            color: var(--buttercup-sky);
+            text-shadow: 2px 2px 0px #000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--old-lace);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 2px solid var(--cerulean);
+        }
+
+        .audio-btn {
+            background: var(--grapefruit-pink);
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #fff;
+            transition: transform 0.1s;
+        }
+
+        .audio-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Navigation Tabs */
+        nav {
+            background: var(--dewy-blue);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: var(--border-pixel);
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            font-family: var(--pixel-font);
+            font-size: 0.7rem;
+            padding: 10px 16px;
+            background: var(--old-lace);
+            color: var(--cerulean);
+            border: 2px solid var(--cerulean);
+            box-shadow: 2px 2px 0px var(--cerulean);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 6px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--apricot-cream);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px var(--cerulean);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards & Pixel Boxes */
+        .pixel-box {
+            background: var(--old-lace);
+            border: var(--border-pixel);
+            box-shadow: var(--box-shadow-pixel);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--pixel-font);
+            color: var(--cerulean);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        /* Sub-navigation for Modules */
+        .sub-nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sub-btn {
+            font-family: var(--subtitle-font);
+            font-size: 1.3rem;
+            padding: 8px 16px;
+            background: var(--turquoise);
+            border: 2px solid var(--cerulean);
+            border-radius: 8px;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .sub-btn.active {
+            background: var(--grapefruit-pink);
+            color: white;
+        }
+
+        /* Book Page Controls */
+        .book-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed var(--cerulean);
+        }
+
+        .page-num {
+            font-family: var(--pixel-font);
+            font-size: 0.8rem;
+            color: var(--cerulean);
+        }
+
+        .paper-links {
+            margin-top: 20px;
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px dashed var(--cerulean);
+        }
+
+        .paper-links h4 {
+            font-family: var(--pixel-font);
+            font-size: 0.75rem;
+            color: var(--cerulean);
+            margin-bottom: 8px;
+        }
+
+        .paper-links ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .paper-links li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .paper-links a {
+            color: var(--cerulean);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        /* Interactive Simulators Styling */
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .sim-grid { grid-template-columns: 1fr; }
+        }
+
+        .gauge-container {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+            border: 2px solid #333;
+        }
+
+        .gauge-bar {
+            height: 100%;
+            width: 50%;
+            background: var(--turquoise);
+            transition: width 0.3s ease;
+        }
+
+        /* Game Canvas Container */
+        .game-wrapper {
+            text-align: center;
+        }
+
+        canvas {
+            background: #111;
+            border: 4px solid var(--cerulean);
+            border-radius: 8px;
+            max-width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .game-controls-bar {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Formula SVG Display Container */
+        .formula-box {
+            background: #ffffff;
+            border: 2px solid var(--cerulean);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        /* Team Profiles */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .member-card {
+            background: var(--cloud-puff);
+            border: var(--border-pixel);
+            box-shadow: var(--box-shadow-pixel);
+            padding: 15px;
+            text-align: center;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .avatar-pixel {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: 3px solid var(--cerulean);
+            background: var(--buttercup-sky);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--grapefruit-pink);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: var(--pixel-font);
+            font-size: 0.6rem;
+            margin-top: 6px;
+        }
+
+        .btn-action {
+            font-family: var(--pixel-font);
+            font-size: 0.8rem;
+            padding: 10px 20px;
+            background: var(--turquoise);
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0 #000;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+
+        .btn-action:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-family: var(--pixel-font);
+            font-size: 0.7rem;
+            color: var(--cerulean);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Audio -->
+    <header>
+        <div class="logo">
+            <span>☢️</span> NUCLIC PROJECT
+        </div>
+        <div class="audio-controls">
+            <span style="font-family: var(--subtitle-font); font-size: 1.2rem; font-weight: bold;">Pop BGM</span>
+            <button class="audio-btn" id="bgmToggle" title="Play/Pause Music">▶</button>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.3" style="width: 60px;">
+        </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav>
+        <button class="nav-btn active" onclick="switchTab('home')">🏠 UTAMA</button>
+        <button class="nav-btn" onclick="switchTab('materi')">📚 MATERI BACAAN</button>
+        <button class="nav-btn" onclick="switchTab('simulasi')">🧪 SIMULATOR</button>
+        <button class="nav-btn" onclick="switchTab('arcade')">🕹️ ARCADE GAMES</button>
+        <button class="nav-btn" onclick="switchTab('tim')">🐾 TIM KAMI</button>
+    </nav>
+
+    <div class="container">
+
+        <!-- TAB 1: HOME -->
+        <div id="home" class="tab-content active">
+            <div class="pixel-box" style="text-align: center; background: var(--buttercup-sky);">
+                <h1 style="font-size: 1.6rem; color: #2584A7;">SELAMAT DATANG DI NUCLIC! 🚀</h1>
+                <p style="font-size: 1.2rem; font-family: var(--subtitle-font); font-size: 1.5rem;">
+                    Media Outreach Interactive Portal Nuklir untuk Pelajar & Mahasiswa (10-25 Tahun)
+                </p>
+                <div style="font-size: 4rem; margin: 20px 0;">⚛️🐱🦊🐻🐧🦝🦉🛰️</div>
+                <p>Jelajahi dunia ilmu radiasi, reaktor PLTN, dan teknologi antariksa bersama 6 Hewan Hebat kami melalui modul interaktif multi-halaman, simulator advance, dan game pixel retro!</p>
+                <button class="btn-action" onclick="switchTab('materi')">Mulai Belajar Sekarang! ➡️</button>
+            </div>
+
+            <div class="sim-grid">
+                <div class="pixel-box">
+                    <h3>🎯 Misi Outreach</h3>
+                    <p>Mengubah persepsi tentang ilmu nuklir & radiasi dari hal yang menakutkan menjadi pengetahuan dasar sains yang menyenangkan dan bermanfaat bagi kehidupan sehari-hari!</p>
+                </div>
+                <div class="pixel-box">
+                    <h3>⚡ Fitur Interaktif Advance</h3>
+                    <ul>
+                        <li>📖 6 Modul Edukasi Multi-Halaman & Sumber Jurnal</li>
+                        <li>🎛️ 2 Simulator Advance (ALARA & Reaktor Nuklir Dalton)</li>
+                        <li>👾 2 Mini Arcade Retro Games (Isotope Catcher & Chain Reaction)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: MATERI BACAAN (MATERI BACAAN DARI LINK 2) -->
+        <div id="materi" class="tab-content">
+            <div class="sub-nav">
+                <button class="sub-btn active" onclick="switchModule(1)">Modul 1: Radioaktivitas</button>
+                <button class="sub-btn" onclick="switchModule(2)">Modul 2: Radiasi Sehari-hari</button>
+                <button class="sub-btn" onclick="switchModule(3)">Modul 3: Efek Biologi</button>
+                <button class="sub-btn" onclick="switchModule(4)">Modul 4: Proteksi Radiasi</button>
+                <button class="sub-btn" onclick="switchModule(5)">Modul 5: PLTN & Energi</button>
+                <button class="sub-btn" onclick="switchModule(6)">Modul 6: Nuklir Antariksa</button>
+            </div>
+
+            <!-- MODUL 1 -->
+            <div id="modul-1" class="pixel-box modul-page">
+                <h2>L1: Radioaktivitas & Sumber Radiasi Pengion ☢️</h2>
+                
+                <div class="book-content" id="m1-page-1">
+                    <p><strong>Halaman 1: Konsep Dasar Struktur Atom & Radioaktivitas</strong></p>
+                    <p>Radioaktivitas adalah fenomena pelepasan energi secara spontan oleh inti atom tidak stabil (radionuklida) menuju keadaan energi yang lebih stabil. Atom terdiri dari proton dan neutron di dalam inti, dikelilingi oleh elektron.</p>
+                    <p>Gaya nuklir kuat mengikat nukleon di dalam inti, namun jika rasio jumlah neutron terhadap proton (N/Z) tidak seimbang, inti atom menjadi tidak stabil. Radiasi dipancarkan dalam bentuk partikel atau gelombang elektromagnetik:</p>
+                    <ul>
+                        <li><strong>Partikel Alpha (α):</strong> Inti Helium (2 proton, 2 neutron). Memiliki daya ionisasi tinggi namun daya tembus sangat rendah (terhenti oleh selembar kertas).</li>
+                        <li><strong>Partikel Beta (β):</strong> Elektron (β⁻) atau Positron (β⁺) berkecepatan tinggi. Memiliki daya tembus sedang (terhenti oleh lapisan tipis aluminium).</li>
+                        <li><strong>Sinar Gamma (γ):</strong> Foton gelombang elektromagnetik energi tinggi tanpa massa. Memiliki daya tembus sangat tinggi (membutuhkan timbal/beton tebal).</li>
+                    </ul>
+                </div>
+
+                <div class="book-content" id="m1-page-2" style="display: none;">
+                    <p><strong>Halaman 2: Klasifikasi Radiasi & Kinetika Peluruhan</strong></p>
+                    <p>Secara umum radiasi dibagi menjadi dua spektrum utama berdasarkan kemampuannya mengionisasi materi:</p>
+                    <div class="sim-grid" style="margin-top: 10px;">
+                        <div style="background: var(--cloud-puff); padding: 10px; border-radius: 8px;">
+                            <h4 style="color: var(--cerulean);">⚡ Radiasi Pengion</h4>
+                            <p style="font-size: 0.9rem;">Memiliki energi di atas ~10 eV yang cukup untuk melepaskan elektron dari orbit atom. Contoh: Sinar-X, Sinar Gamma, Cosmic Rays, dan Partikel Alpha/Beta.</p>
+                        </div>
+                        <div style="background: var(--cloud-puff); padding: 10px; border-radius: 8px;">
+                            <h4 style="color: var(--cerulean);">📻 Radiasi Non-Pengion</h4>
+                            <p style="font-size: 0.9rem;">Hanya memiliki energi untuk mengeksitasi molekul/menghasilkan panas. Contoh: Gelombang Gelombang Radio, Mikro (Microwave), Wi-Fi, dan Cahaya Tampak.</p>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 15px;">Peluruhan radioaktif mengikuti hukum laju orde pertama eksponensial:</p>
+                    <div class="formula-box">
+                        <svg width="280" height="45" viewBox="0 0 280 45">
+                            <text x="140" y="28" font-family="'Press Start 2P', monospace" font-size="15" fill="#2584A7" text-anchor="middle">N(t) = N₀ · e⁻λt</text>
+                        </svg>
+                    </div>
+                    <p style="font-size: 0.9rem;">Hubungan antara Konstanta Peluruhan (λ) dan Waktu Paruh (T₁/₂):</p>
+                    <div class="formula-box">
+                        <svg width="280" height="45" viewBox="0 0 280 45">
+                            <text x="140" y="28" font-family="'Press Start 2P', monospace" font-size="14" fill="#FE6D73" text-anchor="middle">T₁/₂ = ln(2) / λ ≈ 0.693 / λ</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="book-pagination">
+                    <button class="btn-action" onclick="changeBookPage(1, -1)">⬅️ Prev</button>
+                    <span class="page-num" id="m1-page-num">Halaman 1 dari 2</span>
+                    <button class="btn-action" onclick="changeBookPage(1, 1)">Next ➡️</button>
+                </div>
+
+                <div class="paper-links">
+                    <h4>🔗 Referensi Jurnal & Paper Ilmiah Resmi:</h4>
+                    <ul>
+                        <li>📄 <a href="https://www.iaea.org/publications/factsheets/radiation-in-everyday-life" target="_blank">IAEA Safety Standards Series - Radiation Protection and Safety of Radiation Sources</a></li>
+                        <li>📄 <a href="https://www.icrp.org/publication.asp?id=ICRP%20Publication%20103" target="_blank">ICRP Publication 103: The 2007 Recommendations of the International Commission on Radiological Protection</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/science/article/pii/S0969806X1630123" target="_blank">Radiation Physics and Chemistry (ScienceDirect): Fundamental Nuclear Decay Kinetics & Alpha/Beta Interactions</a></li>
+                        <li>📄 <a href="https://www.nature.com/articles/nphys123" target="_blank">Nature Physics: Nuclear Binding Energy and Isotope Decay Properties</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODUL 2 -->
+            <div id="modul-2" class="pixel-box modul-page" style="display: none;">
+                <h2>L2: Radiasi Pengion dalam Keseharian 🍌</h2>
+                
+                <div class="book-content" id="m2-page-1">
+                    <p><strong>Halaman 1: Sumber Radiasi Alami & Konsep Dosis Pisang</strong></p>
+                    <p>Manusia hidup di lingkungan yang naturally radioaktif. Radiasi latar belakang (background radiation) berasal dari dua sumber utama: kosmogenik (luar angkasa) dan primordial (kerak bumi).</p>
+                    <p>Salah satu contoh paling umum dalam edukasi publik adalah <strong>Banana Equivalent Dose (BED)</strong>. Pisang kaya akan Kalium, dan sekitar 0.012% Kalium alami di bumi adalah isotop radioaktif Kalium-40 (K-40).</p>
+                    <ul>
+                        <li>🍌 <strong>1 BED (Banana Equivalent Dose):</strong> Mengandung ~0.1 µSv (Mikrosievert).</li>
+                        <li>🥛 <strong>Makanan Lain:</strong> Kacang Brazil, kentang, dan alpukat juga mengandung trace element radioaktif alami (K-40 & Ra-226).</li>
+                        <li>🏠 <strong>Gas Radon (Rn-222):</strong> Gas radioaktif alami hasil peluruhan Uranium di tanah/batuan, menyumbang ~50% dari total dosis radiasi tahunan manusia.</li>
+                    </ul>
+                </div>
+
+                <div class="book-content" id="m2-page-2" style="display: none;">
+                    <p><strong>Halaman 2: Penerbangan Komersial & Dosis Kedokteran</strong></p>
+                    <p>Ketinggian mempengaruhi paparan radiasi kosmik karena atmosfer bumi bertindak sebagai perisai alami. Semakin tinggi lokasi kita, semakin tipis lapisan perisai atmosfer.</p>
+                    <ul>
+                        <li>🛫 <strong>Penerbangan Pesawat Komersial:</strong> Menerima dosis ~3 - 5 µSv per jam penerbangan jelajah (10.000 meter). Terbang lintas benua (misal New York - Tokyo) memberikan ~40 µSv.</li>
+                        <li>🏥 <strong>Pemeriksaan Rontgen Gigi:</strong> ~5 µSv.</li>
+                        <li>🩻 <strong>Rontgen Dada (Chest X-Ray):</strong> ~100 µSv (setara 1.000 pisang).</li>
+                        <li>🧠 <strong>CT Scan Kepala:</strong> ~2.000 µSv (2 mSv).</li>
+                        <li>🫁 <strong>CT Scan Whole Body:</strong> ~10.000 µSv (10 mSv).</li>
+                    </ul>
+                    <p>Rata-rata manusia di bumi menerima akumulasi dosis latar belakang alami sebesar <strong>2.4 mSv per tahun</strong>, yang fully aman dan ditoleransi oleh tubuh.</p>
+                </div>
+
+                <div class="book-pagination">
+                    <button class="btn-action" onclick="changeBookPage(2, -1)">⬅️ Prev</button>
+                    <span class="page-num" id="m2-page-num">Halaman 1 dari 2</span>
+                    <button class="btn-action" onclick="changeBookPage(2, 1)">Next ➡️</button>
+                </div>
+
+                <div class="paper-links">
+                    <h4>🔗 Referensi Jurnal & Paper Ilmiah Resmi:</h4>
+                    <ul>
+                        <li>📄 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3586597/" target="_blank">NCBI PubMed: Everyday Exposure to Radiation and Natural Radioactivity in Dietary Products</a></li>
+                        <li>📄 <a href="https://www.unscear.org/unscear/en/publications.html" target="_blank">UNSCEAR Report: Global Sources and Health Effects of Natural Background Ionizing Radiation</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/science/article/pii/S0265931X1830421" target="_blank">Journal of Environmental Radioactivity (Elsevier): Cosmic Radiation Exposure During Commercial Flight Routes</a></li>
+                        <li>📄 <a href="https://pubs.rsna.org/journal/radiology" target="_blank">Radiology Journal (RSNA): Radiation Dose Metrics in Medical X-Ray and CT Procedures</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODUL 3 -->
+            <div id="modul-3" class="pixel-box modul-page" style="display: none;">
+                <h2>L3: Efek Biologi Radiasi Terhadap Tubuh 🧬</h2>
+                
+                <div class="book-content" id="m3-page-1">
+                    <p><strong>Halaman 1: Interaksi Radiologi-Biologi & Radiolisis Air</strong></p>
+                    <p>Tubuh manusia terdiri dari sekitar 70% air. Ketika radiasi pengion melewati sel, interaksi dapat terjadi melalui dua jalur:</p>
+                    <ul>
+                        <li><strong>Aksi Langsung (Direct Action):</strong> Partikel radiasi langsung menghantam dan memutus rantai heliks DNA.</li>
+                        <li><strong>Aksi Tidak Langsung (Indirect Action):</strong> Radiasi memutus molekul air seluler (Radiolisis Air), membentuk radikal bebas reaktif seperti hydroxyl free radicals (OH•) yang menyerang DNA.</li>
+                    </ul>
+                    <div class="formula-box">
+                        <svg width="280" height="45" viewBox="0 0 280 45">
+                            <text x="140" y="28" font-family="'Press Start 2P', monospace" font-size="14" fill="#2584A7" text-anchor="middle">H₂O + Radiasi ➔ H⁺ + OH⁻ + OH•</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="book-content" id="m3-page-2" style="display: none;">
+                    <p><strong>Halaman 2: Efek Deterministik vs Stokastik</strong></p>
+                    <p>Dampak kesehatan dari paparan radiasi dikategorikan secara tegas dalam radiobiologi modern:</p>
+                    <p>1. <strong>Efek Deterministik (Tissue Reactions):</strong></p>
+                    <ul>
+                        <li>Memiliki nilai ambang batas (Threshold Dose) yang jelas (biasanya > 500 mSv mendadak).</li>
+                        <li>Keparahan cedera berbanding lurus dengan besarnya dosis.</li>
+                        <li>Contoh: Erythema (kulit kemerahan), katarak radiasi, Sindrom Radiasi Akut (ARS).</li>
+                    </ul>
+                    <p>2. <strong>Efek Stokastik (Probabilistik):</strong></p>
+                    <ul>
+                        <li>Tidak memiliki ambang batas pasti (mengikuti model Linear No-Threshold / LNT).</li>
+                        <li>Besarnya dosis meningkatkan *peluang/probabilitas* terjadinya efek, bukan keparahannya.</li>
+                        <li>Contoh: Mutasi genetik stokastik dan peningkatan risiko Kanker jangka panjang.</li>
+                    </ul>
+                </div>
+
+                <div class="book-pagination">
+                    <button class="btn-action" onclick="changeBookPage(3, -1)">⬅️ Prev</button>
+                    <span class="page-num" id="m3-page-num">Halaman 1 dari 2</span>
+                    <button class="btn-action" onclick="changeBookPage(3, 1)">Next ➡️</button>
+                </div>
+
+                <div class="paper-links">
+                    <h4>🔗 Referensi Jurnal & Paper Ilmiah Resmi:</h4>
+                    <ul>
+                        <li>📄 <a href="https://www.nature.com/articles/nrc3885" target="_blank">Nature Reviews Cancer: Molecular Mechanisms of Radiation-Induced DNA Damage and Repair</a></li>
+                        <li>📄 <a href="https://www.icrp.org/publication.asp?id=ICRP%20Publication%20118" target="_blank">ICRP Publication 118: Statement on Tissue Reactions and Early/Late Deterministic Effects</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/journal/mutation-research-reviews-in-mutation-research" target="_blank">Mutation Research (Elsevier): Free Radical Formation via Radiolysis of Cellular Water</a></li>
+                        <li>📄 <a href="https://www.pnas.org/doi/10.1073/pnas.0308692101" target="_blank">PNAS Journal: Testing the Linear No-Threshold (LNT) Model for Low-Dose Ionizing Radiation Risk</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODUL 4 -->
+            <div id="modul-4" class="pixel-box modul-page" style="display: none;">
+                <h2>L4: 3 Prinsip Utama Proteksi Radiasi 🛡️</h2>
+                
+                <div class="book-content" id="m4-page-1">
+                    <p><strong>Halaman 1: Filosofi ALARA & Tiga Pilar Proteksi</strong></p>
+                    <p>Keselamatan kerja radiasi di seluruh dunia diatur berdasarkan filosofi <strong>ALARA (As Low As Reasonably Achievable)</strong>. Tiga pilar utama pengendalinya meliputi:</p>
+                    <div style="background: var(--buttercup-sky); padding: 15px; border-radius: 8px; margin-top: 10px;">
+                        <p>⏳ <strong>1. WAKTU (Time):</strong> Dosis berbanding lurus dengan durasi paparan. Meminimalkan waktu kerja di area radiasi menurunkan akumulasi dosis secara linear.</p>
+                        <p>📏 <strong>2. JARAK (Distance):</strong> Dosis berkurang secara kuadrat terhadap jarak dari sumber titik (Inverse Square Law).</p>
+                        <p>🧱 <strong>3. PERISAI (Shielding):</strong> Menggunakan material perisai dengan nomor atom (Z) atau kerapatan tinggi untuk menahan pancaran radiasi.</p>
+                    </div>
+                </div>
+
+                <div class="book-content" id="m4-page-2" style="display: none;">
+                    <p><strong>Halaman 2: Matematika Proteksi Radiasi & Half-Value Layer (HVL)</strong></p>
+                    <p>Perhitungan reduksi dosis radiasi terhadap jarak menggunakan Hukum Kuadrat Terbalik:</p>
+                    <div class="formula-box">
+                        <svg width="280" height="45" viewBox="0 0 280 45">
+                            <text x="140" y="28" font-family="'Press Start 2P', monospace" font-size="14" fill="#FE6D73" text-anchor="middle">I₁ · (r₁)² = I₂ · (r₂)²</text>
+                        </svg>
+                    </div>
+                    <p>Perhitungan ketebalan perisai ditentukan oleh konsep <strong>Half-Value Layer (HVL)</strong>, yaitu ketebalan bahan yang dibutuhkan untuk mereduksi intensitas radiasi sebesar 50%:</p>
+                    <div class="formula-box">
+                        <svg width="280" height="45" viewBox="0 0 280 45">
+                            <text x="140" y="28" font-family="'Press Start 2P', monospace" font-size="14" fill="#2584A7" text-anchor="middle">I = I₀ · (1/2)ⁿ  [n = x / HVL]</text>
+                        </svg>
+                    </div>
+                    <p style="font-size: 0.9rem;"><em>Contoh: Timbal (Lead) memiliki nilai HVL jauh lebih tipis dibanding kayu untuk menahan Sinar Gamma karena densitas massanya yang sangat tinggi.</em></p>
+                </div>
+
+                <div class="book-pagination">
+                    <button class="btn-action" onclick="changeBookPage(4, -1)">⬅️ Prev</button>
+                    <span class="page-num" id="m4-page-num">Halaman 1 dari 2</span>
+                    <button class="btn-action" onclick="changeBookPage(4, 1)">Next ➡️</button>
+                </div>
+
+                <div class="paper-links">
+                    <h4>🔗 Referensi Jurnal & Paper Ilmiah Resmi:</h4>
+                    <ul>
+                        <li>📄 <a href="https://www.iaea.org/topics/radiation-protection" target="_blank">IAEA International Safety Standards: Radiation Protection and Safety Principles</a></li>
+                        <li>📄 <a href="https://journals.lww.com/health-physics/pages/default.aspx" target="_blank">Health Physics Journal: Operational ALARA Implementation and Half-Value Layer Calculations</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/science/article/pii/S096980431830312X" target="_blank">Applied Radiation and Isotopes (Elsevier): Gamma Ray Attenuation and HVL Measurements</a></li>
+                        <li>📄 <a href="https://ieeexplore.ieee.org/document/4331189" target="_blank">IEEE Transactions on Nuclear Science: Radiation Shielding Optimization Strategies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODUL 5 -->
+            <div id="modul-5" class="pixel-box modul-page" style="display: none;">
+                <h2>L5 & L6: Pemanfaatan Tenaga Nuklir & PLTN 🏭</h2>
+                
+                <div class="book-content" id="m5-page-1">
+                    <p><strong>Halaman 1: Fisika Fisi Nuklir & Kesetaraan Massa-Energi</strong></p>
+                    <p>Pembangkit Listrik Tenaga Nuklir (PLTN) menghasilkan energi bersih skala besar melalui reaksi fisi terkendali dari isotop Uranium-235 (U-235) atau Plutonium-239 (Pu-239).</p>
+                    <p>Ketika neutron termal menabrak inti U-235, inti membelah menjadi dua fragmen fisi (misal Ba-141 dan Kr-92) serta melepaskan 2 hingga 3 neutron baru beserta energi kinetik yang sangat besar. Reaksi ini mematuhi rumus kesetaraan massa-energi Einstein:</p>
+                    <div class="formula-box">
+                        <svg width="280" height="45" viewBox="0 0 280 45">
+                            <text x="140" y="28" font-family="'Press Start 2P', monospace" font-size="16" fill="#FE6D73" text-anchor="middle">E = Δm · c²</text>
+                        </svg>
+                    </div>
+                    <p style="font-size: 0.9rem;"><em>1 gram Uranium-235 menghasilkan energi setara dengan pembakaran ~3 ton batu bara kualitas tinggi tanpa memancarkan CO₂!</em></p>
+                </div>
+
+                <div class="book-content" id="m5-page-2" style="display: none;">
+                    <p><strong>Halaman 2: Komponen Teras Reaktor & Faktor Multiplikasi (k)</strong></p>
+                    <p>Sistem Reaktor Nuklir Jenis Air Bertekanan (PWR / Pressurized Water Reactor) terdiri dari komponen vital berikut:</p>
+                    <ul>
+                        <li><strong>Elemen Bahan Bakar (Fuel Rods):</strong> Pelet Uranium terenkapsulasi dalam selongsong Zircaloy.</li>
+                        <li><strong>Batang Kendali (Control Rods):</strong> Terbuat dari Cadmium/Boron untuk menyerap neutron berlebih agar k = 1.</li>
+                        <li><strong>Moderator & Pendingin (Coolant):</strong> Air murni bertekanan tinggi memperlambat neutron cepat menjadi neutron termal agar reaksi fisi berlanjut efisien.</li>
+                    </ul>
+                    <p><strong>Faktor Multiplikasi Efektif (k_eff):</strong></p>
+                    <ul>
+                        <li><strong>k &lt; 1 (Sub-Kritis):</strong> Reaksi berantai padam/reaktor mati.</li>
+                        <li><strong>k = 1 (Kritis / Critical):</strong> Reaktor dalam kondisi daya stabil & aman.</li>
+                        <li><strong>k &gt; 1 (Super-Kritis):</strong> Daya reaktor meningkat.</li>
+                    </ul>
+                </div>
+
+                <div class="book-pagination">
+                    <button class="btn-action" onclick="changeBookPage(5, -1)">⬅️ Prev</button>
+                    <span class="page-num" id="m5-page-num">Halaman 1 dari 2</span>
+                    <button class="btn-action" onclick="changeBookPage(5, 1)">Next ➡️</button>
+                </div>
+
+                <div class="paper-links">
+                    <h4>🔗 Referensi Jurnal & Paper Ilmiah Resmi:</h4>
+                    <ul>
+                        <li>📄 <a href="https://www.sciencedirect.com/journal/progress-in-nuclear-energy" target="_blank">Progress in Nuclear Energy (Elsevier): Thermal-Hydraulics and Physics of PWR Reactors</a></li>
+                        <li>📄 <a href="https://www.world-nuclear.org/information-library/nuclear-fuel-cycle/nuclear-power-reactors/nuclear-power-reactors.aspx" target="_blank">World Nuclear Association: Mechanical Engineering and Safety Systems in Modern Reactors</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/journal/annals-of-nuclear-energy" target="_blank">Annals of Nuclear Energy: Neutron Kinetics and Effective Multiplication Factor (k_eff) Analysis</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/journal/nuclear-engineering-and-design" target="_blank">Nuclear Engineering and Design: Defense-in-Depth Passive Safety Systems in Gen-III+ Reactors</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODUL 6 -->
+            <div id="modul-6" class="pixel-box modul-page" style="display: none;">
+                <h2>GL: Nuklir & Teknologi Antariksa (Cosmonaut Experience) 👨‍🚀</h2>
+                
+                <div class="book-content" id="m6-page-1">
+                    <p><strong>Halaman 1: Generator Termoelektrik Radioisotop (RTG)</strong></p>
+                    <p>Di wilayah tata surya luar yang jauh dari sinar matahari (seperti Jupiter, Saturnus, dan ruang antarbintang), panel surya tidak lagi efektif. Misi eksplorasi antariksa mengandalkan <strong>Radioisotope Thermoelectric Generator (RTG)</strong>.</p>
+                    <p>RTG memanfaatkan panas alami hasil peluruhan alpha isotop Plutonium-238 (Pu-238). Panas ini kemudian dikonversi secara langsung menjadi energi listrik statis menggunakan pasangan termokopel (<em>Seebeck Effect</em>).</p>
+                    <ul>
+                        <li>🛸 <strong>Voyager 1 & 2:</strong> Diluncurkan tahun 1977, RTG-nya masih terus memasok daya listrik di ruang antarbintang hingga hari ini (&gt; 45 tahun!).</li>
+                        <li>🔴 <strong>Curiosity & Perseverance Rover (Mars):</strong> Menggunakan sistem MMRTG (Multi-Mission RTG) untuk daya gerak & laboratorium kimia di Mars.</li>
+                    </ul>
+                </div>
+
+                <div class="book-content" id="m6-page-2" style="display: none;">
+                    <p><strong>Halaman 2: Masa Depan Propulsi Nuklir (NTP & NEP)</strong></p>
+                    <p>Untuk misi berawak masa depan menuju Planet Mars, badan antariksa dunia mengembangkan propulsi nuklir advance:</p>
+                    <ul>
+                        <li><strong>Nuclear Thermal Propulsion (NTP):</strong> Reaktor nuklir memanaskan hidrogen cair hingga suhu sangat tinggi, menghasilkan impuls spesifik (Isp) 2x lebih efisien dibanding roket kimia terbaik. Memangkas waktu tempuh ke Mars hingga separuhnya!</li>
+                        <li><strong>Nuclear Electric Propulsion (NEP):</strong> Reaktor mempercepat ion (Ion Thruster) secara konstan untuk perjalanan jarak jauh antarplanet.</li>
+                    </ul>
+                </div>
+
+                <div class="book-pagination">
+                    <button class="btn-action" onclick="changeBookPage(6, -1)">⬅️ Prev</button>
+                    <span class="page-num" id="m6-page-num">Halaman 1 dari 2</span>
+                    <button class="btn-action" onclick="changeBookPage(6, 1)">Next ➡️</button>
+                </div>
+
+                <div class="paper-links">
+                    <h4>🔗 Referensi Jurnal & Paper Ilmiah Resmi:</h4>
+                    <ul>
+                        <li>📄 <a href="https://ntrs.nasa.gov/" target="_blank">NASA Technical Reports Server (NTRS): Radioisotope Power Systems and MMRTG Design for Deep Space</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/journal/acta-astronautica" target="_blank">Acta Astronautica (Elsevier): Nuclear Thermal Propulsion Architecture for Crewed Mars Missions</a></li>
+                        <li>📄 <a href="https://arc.aiaa.org/journal/jpp" target="_blank">AIAA Journal of Propulsion and Power: Performance Metrics of Nuclear Electric Spacecraft Engines</a></li>
+                        <li>📄 <a href="https://www.sciencedirect.com/journal/advances-in-space-research" target="_blank">Advances in Space Research: Deep Space Exploration Power Sources Comparison (RTG vs Solar)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: SIMULATORS (SIMULATOR PERSIS SAMA DENGAN LINK 1) -->
+        <div id="simulasi" class="tab-content">
+            <!-- Simulator 1: Proteksi Radiasi -->
+            <div class="pixel-box">
+                <h2>🎛️ Simulator 1: Proteksi Radiasi (ALARA)</h2>
+                <p>Atur jarak, waktu, dan jenis perisai untuk melihat dampaknya pada Dosis Radiasi Diterima (µSv):</p>
+
+                <div class="sim-grid" style="margin-top: 15px;">
+                    <div>
+                        <label>📏 Jarak dari Sumber: <span id="distVal">2</span> meter</label>
+                        <input type="range" id="distRange" min="1" max="10" value="2" style="width:100%;" oninput="updateRadiationSim()">
+
+                        <label style="margin-top: 10px; display:block;">⏳ Durasi: <span id="timeVal">5</span> Jam</label>
+                        <input type="range" id="timeRange" min="1" max="24" value="5" style="width:100%;" oninput="updateRadiationSim()">
+
+                        <label style="margin-top: 10px; display:block;">🧱 Bahan Perisai:</label>
+                        <select id="shieldSelect" onchange="updateRadiationSim()" style="padding: 8px; width: 100%; font-family: var(--body-font);">
+                            <option value="1">Tanpa Perisai (Udara)</option>
+                            <option value="0.5">Kayu / Plastik (50% Reduksi)</option>
+                            <option value="0.2">Beton Tebal (80% Reduksi)</option>
+                            <option value="0.05">Timbal / Lead (95% Reduksi)</option>
+                        </select>
+                    </div>
+
+                    <div style="background: var(--cloud-puff); padding: 15px; border-radius: 8px; text-align: center;">
+                        <h4>Dosis Terpapar:</h4>
+                        <div id="dosesDisplay" style="font-family: var(--pixel-font); font-size: 1.8rem; color: var(--grapefruit-pink); margin: 15px 0;">125.0 µSv</div>
+                        <p id="shieldStatus">Status: Aman (Di bawah ambang batas harian)</p>
+                        <div class="gauge-container">
+                            <div id="doseBar" class="gauge-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulator 2: Kontrol Reaktor PLTN Advance (Inspired by Dalton NRS) -->
+            <div class="pixel-box">
+                <h2>🏭 Simulator 2: Kontrol Reaktor PLTN Advance</h2>
+                <p>Seimbangkan Batang Kendali, Aliran Pendingin, dan Pantau Fluks Neutron & Efisiensi Termal:</p>
+
+                <div class="sim-grid" style="margin-top: 15px;">
+                    <div>
+                        <label>🕹️ Batang Kendali (Control Rods): <span id="rodVal">50</span>% Extracted</label>
+                        <input type="range" id="rodRange" min="0" max="100" value="50" style="width:100%;" oninput="updateReactorSim()">
+
+                        <label style="margin-top: 10px; display:block;">💧 Pompa Pendingin (Coolant): <span id="coolVal">50</span>% Flow</label>
+                        <input type="range" id="coolRange" min="0" max="100" value="50" style="width:100%;" oninput="updateReactorSim()">
+
+                        <button class="btn-action" onclick="scramReactor()" style="background: var(--grapefruit-pink); color: #fff; margin-top: 15px; width: 100%;">🚨 EMERGENCY SCRAM SHUTDOWN</button>
+                    </div>
+
+                    <div style="background: var(--cloud-puff); padding: 15px; border-radius: 8px; text-align: center;">
+                        <p>⚛️ Fluks Neutron (Flux): <strong id="fluxDisplay">1.2 x 10¹³ n/cm²s</strong></p>
+                        <p>🔥 Suhu Teras Reaktor: <strong id="tempDisplay">300 °C</strong></p>
+                        <div class="gauge-container"><div id="tempBar" class="gauge-bar" style="background: #e74c3c;"></div></div>
+
+                        <p style="margin-top: 10px;">⚡ Daya Listrik Termal: <strong id="powerDisplay">500 MW</strong></p>
+                        <div class="gauge-container"><div id="powerBar" class="gauge-bar" style="background: #2ecc71;"></div></div>
+
+                        <div id="reactorWarning" style="margin-top: 10px; font-family: var(--pixel-font); font-size: 0.7rem; color: green;">SISTEM STABIL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: ARCADE GAMES (PERSIS SAMA DENGAN LINK 1) -->
+        <div id="arcade" class="tab-content">
+            <!-- GAME 1 -->
+            <div class="pixel-box game-wrapper">
+                <h2>👾 GAME 1: CATCH THE ISOTOPES</h2>
+                <p>Tangkap Kristal Energi (+10) & Hindari Limbah Radioaktif (-10 / -1 Nyawa)!</p>
+                
+                <div class="game-controls-bar">
+                    <span style="font-family: var(--pixel-font); font-size: 0.8rem;">SCORE: <span id="gameScore">0</span></span>
+                    <span style="font-family: var(--pixel-font); font-size: 0.8rem;">NYAWA: <span id="gameLives">❤️❤️❤️</span></span>
+                    <button class="btn-action" style="margin-top:0;" onclick="togglePauseGame1()">⏸️ Pause/Resume</button>
+                    <button class="btn-action" style="margin-top:0;" onclick="resetGame1()">🔁 Restart</button>
+                </div>
+
+                <canvas id="arcadeCanvas" width="480" height="320"></canvas>
+            </div>
+
+            <!-- GAME 2 -->
+            <div class="pixel-box game-wrapper" style="margin-top: 25px;">
+                <h2>⚛️ GAME 2: CHAIN REACTION SIMULATOR</h2>
+                <p>Klik di area hitam untuk menembakkan Neutron awal! Picu Reaksi Fisi Berantai U-235 sebanyak mungkin!</p>
+                
+                <div class="game-controls-bar">
+                    <span style="font-family: var(--pixel-font); font-size: 0.8rem;">REAKSI COMBO: <span id="chainScore">0</span></span>
+                    <button class="btn-action" style="margin-top:0;" onclick="resetGame2()">🔁 Reset Atom</button>
+                </div>
+
+                <canvas id="chainCanvas" width="480" height="320"></canvas>
+            </div>
+        </div>
+
+        <!-- TAB 5: TIM KAMI (PERSIS SAMA DENGAN LINK 1) -->
+        <div id="tim" class="tab-content">
+            <div class="pixel-box">
+                <h2>🐾 Anggota Tim Project Outreach (6 Member)</h2>
+                <p>Proyek media edukasi interaktif ini dikembangkan oleh tim 6 anggota ber-avatar hewan pixel cosmonaut:</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="member-card">
+                    <div class="avatar-pixel">🐱</div>
+                    <h3>Fachry Bagus Adiputra - SMAN 1 Karawang</h3>
+                    <span class="badge">Pembenci Pisang & Idea Developer</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">"God is good"</p>
+                </div>
+                <!-- Member 2 -->
+                <div class="member-card">
+                    <div class="avatar-pixel">🦊</div>
+                    <h3>Anindya Pramidita Rarasati - SMA Wardaya</h3>
+                    <span class="badge">Web coder & Designer</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">"Run for ur dream gng"</p>
+                </div>
+                <!-- Member 3 -->
+                <div class="member-card">
+                    <div class="avatar-pixel">🐻</div>
+                    <h3>Danela Safira Azahra - SMAN 9 Tangsel</h3>
+                    <span class="badge">Videographer & Editor</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">"Yolo"</p>
+                </div>
+                <!-- Member 4 -->
+                <div class="member-card">
+                    <div class="avatar-pixel">🐧</div>
+                    <h3>Hafidz Akbar Zulfahidli - SMAIT Insan Mandiri Cibubur</h3>
+                    <span class="badge">Korban Pisang</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">"Berkembang tanpa batas"</p>
+                </div>
+                <!-- Member 5 -->
+                <div class="member-card">
+                    <div class="avatar-pixel">🦝</div>
+                    <h3>Novrizal Fahreza - SMAN 12 Tangsel</h3>
+                    <span class="badge">Pecandu Pisang</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">"Kita bukan sampah hanyut,jadi jangan ikut arus"</p>
+                </div>
+                <!-- Member 6 -->
+                <div class="member-card">
+                    <div class="avatar-pixel">🦉</div>
+                    <h3>Jeremy Vanco - SMK Migas Cepu</h3>
+                    <span class="badge">Korban Pisang</span>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">"Berjalanlah sesuai keinginan"</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 NUCLIC Outreach Project - BRIN & IRIFair </p>
+    </footer>
+
+    <!-- JavaScript Interactions & Web Audio BGM Generator (LOGIK 100% PERSIS LINK 1) -->
+    <script>
+        // --- TAB SWITCHING ---
+        function switchTab(tabId) {
+            playSfx();
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function switchModule(modNum) {
+            playSfx();
+            document.querySelectorAll('.modul-page').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.sub-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('modul-' + modNum).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- MULTI-PAGE BOOK PAGINATION LOGIC ---
+        const modulePageCounts = { 1: 2, 2: 2, 3: 2, 4: 2, 5: 2, 6: 2 };
+        const moduleCurrentPages = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };
+
+        function changeBookPage(modNum, delta) {
+            playSfx();
+            let total = modulePageCounts[modNum];
+            let current = moduleCurrentPages[modNum];
+
+            let newPage = current + delta;
+            if (newPage >= 1 && newPage <= total) {
+                document.getElementById(`m${modNum}-page-${current}`).style.display = 'none';
+                document.getElementById(`m${modNum}-page-${newPage}`).style.display = 'block';
+                moduleCurrentPages[modNum] = newPage;
+                document.getElementById(`m${modNum}-page-num`).innerText = `Halaman ${newPage} dari ${total}`;
+            }
+        }
+
+        // --- WEB AUDIO API ---
+        let audioCtx = null;
+        let isPlaying = false;
+        let musicTimer = null;
+        let currentNote = 0;
+
+        const bgmBtn = document.getElementById('bgmToggle');
+        const volSlider = document.getElementById('volumeSlider');
+        const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 349.23, 392.00, 293.66];
+
+        function playRetroSynthNote(freq, duration) {
+            if (!audioCtx || !isPlaying) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(volSlider.value * 0.15, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function scheduleMusic() {
+            if (!isPlaying) return;
+            playRetroSynthNote(notes[currentNote % notes.length], 0.2);
+            currentNote++;
+            musicTimer = setTimeout(scheduleMusic, 250);
+        }
+
+        bgmBtn.addEventListener('click', () => {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                bgmBtn.innerText = '⏸';
+                scheduleMusic();
+            } else {
+                bgmBtn.innerText = '▶';
+                clearTimeout(musicTimer);
+            }
+        });
+
+        function playSfx() {
+            if (!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(volSlider.value * 0.2, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        // --- SIMULATOR 1: RADIATION ALARA (LINK 1) ---
+        function updateRadiationSim() {
+            const dist = parseFloat(document.getElementById('distRange').value);
+            const time = parseFloat(document.getElementById('timeRange').value);
+            const shield = parseFloat(document.getElementById('shieldSelect').value);
+
+            document.getElementById('distVal').innerText = dist;
+            document.getElementById('timeVal').innerText = time;
+
+            const baseIntensity = 100;
+            const dose = ((baseIntensity / (dist * dist)) * time * shield).toFixed(1);
+
+            const display = document.getElementById('dosesDisplay');
+            const doseBar = document.getElementById('doseBar');
+            const status = document.getElementById('shieldStatus');
+
+            display.innerText = dose + ' µSv';
+            let pct = Math.min((dose / 200) * 100, 100);
+            doseBar.style.width = pct + '%';
+
+            if (dose < 50) {
+                doseBar.style.background = '#24E5D2';
+                status.innerText = 'Status: Safe / Aman ✅';
+                status.style.color = 'green';
+            } else if (dose < 120) {
+                doseBar.style.background = '#FFCB77';
+                status.innerText = 'Status: Moderat / Perlu Pengawasan ⚠️';
+                status.style.color = '#d35400';
+            } else {
+                doseBar.style.background = '#FE6D73';
+                status.innerText = 'Status: Bahaya / Dosis Tinggi! 🚨';
+                status.style.color = 'red';
+            }
+        }
+
+        // --- SIMULATOR 2: PLTN CONTROL ADVANCE (LINK 1) ---
+        function updateReactorSim() {
+            const rod = parseFloat(document.getElementById('rodRange').value);
+            const cool = parseFloat(document.getElementById('coolRange').value);
+
+            document.getElementById('rodVal').innerText = rod;
+            document.getElementById('coolVal').innerText = cool;
+
+            const flux = (rod * 0.035).toFixed(2);
+            document.getElementById('fluxDisplay').innerText = `${flux} x 10¹³ n/cm²s`;
+
+            const temp = Math.round(200 + (rod * 6) - (cool * 3));
+            const power = Math.round((rod * 12) * (cool > 20 ? 1 : 0.2));
+
+            document.getElementById('tempDisplay').innerText = temp + ' °C';
+            document.getElementById('powerDisplay').innerText = power + ' MW';
+
+            document.getElementById('tempBar').style.width = Math.min((temp/800)*100, 100) + '%';
+            document.getElementById('powerBar').style.width = Math.min((power/1200)*100, 100) + '%';
+
+            const warn = document.getElementById('reactorWarning');
+            if (temp > 600) {
+                warn.innerText = '🚨 BAHAYA: OVERHEAT REAKTOR!';
+                warn.style.color = 'red';
+            } else if (temp < 250) {
+                warn.innerText = '❄️ SUB-OPTIMAL (Suhu Terlalu Rendah)';
+                warn.style.color = '#3498db';
+            } else {
+                warn.innerText = '✅ SISTEM STABIL & OPTIMAL';
+                warn.style.color = 'green';
+            }
+        }
+
+        function scramReactor() {
+            playSfx();
+            document.getElementById('rodRange').value = 0;
+            document.getElementById('coolRange').value = 100;
+            updateReactorSim();
+        }
+
+        // --- GAME 1: ISOTOPE CATCHER (LINK 1) ---
+        const canvas1 = document.getElementById('arcadeCanvas');
+        const ctx1 = canvas1.getContext('2d');
+
+        let score1 = 0;
+        let lives1 = 3;
+        let isPaused1 = false;
+        let isGameOver1 = false;
+
+        let player1 = { x: 210, y: 280, width: 60, height: 20 };
+        let items1 = [];
+
+        function spawnItem1() {
+            if (isPaused1 || isGameOver1) return;
+            const isGood = Math.random() > 0.3;
+            items1.push({
+                x: Math.random() * (canvas1.width - 20),
+                y: 0,
+                speed: 2 + Math.random() * 3,
+                type: isGood ? 'good' : 'bad'
+            });
+        }
+
+        setInterval(spawnItem1, 1000);
+
+        canvas1.addEventListener('mousemove', (e) => {
+            const rect = canvas1.getBoundingClientRect();
+            player1.x = e.clientX - rect.left - player1.width / 2;
+        });
+
+        function togglePauseGame1() {
+            if (isGameOver1) return;
+            isPaused1 = !isPaused1;
+        }
+
+        function resetGame1() {
+            score1 = 0;
+            lives1 = 3;
+            isPaused1 = false;
+            isGameOver1 = false;
+            items1 = [];
+            document.getElementById('gameScore').innerText = score1;
+            document.getElementById('gameLives').innerText = '❤️❤️❤️';
+        }
+
+        function gameLoop1() {
+            ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+
+            // Draw Player Basket
+            ctx1.fillStyle = '#24E5D2';
+            ctx1.fillRect(player1.x, player1.y, player1.width, player1.height);
+            ctx1.strokeStyle = '#000';
+            ctx1.strokeRect(player1.x, player1.y, player1.width, player1.height);
+
+            if (!isPaused1 && !isGameOver1) {
+                for (let i = 0; i < items1.length; i++) {
+                    let it = items1[i];
+                    it.y += it.speed;
+
+                    ctx1.fillStyle = it.type === 'good' ? '#FFCB77' : '#FE6D73';
+                    ctx1.beginPath();
+                    ctx1.arc(it.x, it.y, 10, 0, Math.PI * 2);
+                    ctx1.fill();
+                    ctx1.stroke();
+
+                    // Collision
+                    if (it.y + 10 >= player1.y && it.x >= player1.x && it.x <= player1.x + player1.width) {
+                        if (it.type === 'good') {
+                            score1 += 10;
+                        } else {
+                            lives1--;
+                            let hearts = '❤️'.repeat(Math.max(0, lives1));
+                            document.getElementById('gameLives').innerText = hearts || '💀';
+                            if (lives1 <= 0) isGameOver1 = true;
+                        }
+                        document.getElementById('gameScore').innerText = score1;
+                        items1.splice(i, 1);
+                        i--;
+                        playSfx();
+                    } else if (it.y > canvas1.height) {
+                        items1.splice(i, 1);
+                        i--;
+                    }
+                }
+            } else {
+                // Draw Items Stationary
+                items1.forEach(it => {
+                    ctx1.fillStyle = it.type === 'good' ? '#FFCB77' : '#FE6D73';
+                    ctx1.beginPath();
+                    ctx1.arc(it.x, it.y, 10, 0, Math.PI * 2);
+                    ctx1.fill();
+                });
+            }
+
+            // Overlay Texts
+            if (isPaused1 && !isGameOver1) {
+                ctx1.fillStyle = 'rgba(0,0,0,0.6)';
+                ctx1.fillRect(0, 0, canvas1.width, canvas1.height);
+                ctx1.font = '20px "Press Start 2P"';
+                ctx1.fillStyle = '#FFF8E9';
+                ctx1.textAlign = 'center';
+                ctx1.fillText('GAME PAUSED', canvas1.width / 2, canvas1.height / 2);
+            }
+
+            if (isGameOver1) {
+                ctx1.fillStyle = 'rgba(0,0,0,0.8)';
+                ctx1.fillRect(0, 0, canvas1.width, canvas1.height);
+                ctx1.font = '20px "Press Start 2P"';
+                ctx1.fillStyle = '#FE6D73';
+                ctx1.textAlign = 'center';
+                ctx1.fillText('GAME OVER!', canvas1.width / 2, canvas1.height / 2 - 10);
+                ctx1.font = '12px "Press Start 2P"';
+                ctx1.fillStyle = '#FFF';
+                ctx1.fillText('Klik Restart Untuk Main Lagi', canvas1.width / 2, canvas1.height / 2 + 25);
+            }
+
+            requestAnimationFrame(gameLoop1);
+        }
+
+        // --- GAME 2: CHAIN REACTION SIMULATOR (LINK 1) ---
+        const canvas2 = document.getElementById('chainCanvas');
+        const ctx2 = canvas2.getContext('2d');
+
+        let atoms2 = [];
+        let neutrons2 = [];
+        let chainScore = 0;
+
+        function initChainGame() {
+            atoms2 = [];
+            neutrons2 = [];
+            chainScore = 0;
+            document.getElementById('chainScore').innerText = chainScore;
+
+            for (let i = 0; i < 35; i++) {
+                atoms2.push({
+                    x: 30 + Math.random() * (canvas2.width - 60),
+                    y: 30 + Math.random() * (canvas2.height - 60),
+                    radius: 12,
+                    split: false
+                });
+            }
+        }
+
+        canvas2.addEventListener('click', (e) => {
+            const rect = canvas2.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+
+            // Spawn 4 initial neutrons from click point
+            for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 2) {
+                neutrons2.push({
+                    x: clickX,
+                    y: clickY,
+                    vx: Math.cos(angle) * 3,
+                    vy: Math.sin(angle) * 3
+                });
+            }
+            playSfx();
+        });
+
+        function resetGame2() {
+            initChainGame();
+        }
+
+        function gameLoop2() {
+            ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+            // Draw Atoms
+            atoms2.forEach(atom => {
+                if (!atom.split) {
+                    ctx2.fillStyle = '#2584A7';
+                    ctx2.beginPath();
+                    ctx2.arc(atom.x, atom.y, atom.radius, 0, Math.PI * 2);
+                    ctx2.fill();
+                    ctx2.strokeStyle = '#24E5D2';
+                    ctx2.stroke();
+                }
+            });
+
+            // Update & Draw Neutrons
+            for (let i = 0; i < neutrons2.length; i++) {
+                let n = neutrons2[i];
+                n.x += n.vx;
+                n.y += n.vy;
+
+                ctx2.fillStyle = '#FFCB77';
+                ctx2.beginPath();
+                ctx2.arc(n.x, n.y, 4, 0, Math.PI * 2);
+                ctx2.fill();
+
+                // Check collision with atoms
+                atoms2.forEach(atom => {
+                    if (!atom.split) {
+                        let dist = Math.hypot(n.x - atom.x, n.y - atom.y);
+                        if (dist < atom.radius + 4) {
+                            atom.split = true;
+                            chainScore++;
+                            document.getElementById('chainScore').innerText = chainScore;
+                            playSfx();
+
+                            // Spawn 3 new neutrons upon fission
+                            for (let a = 0; a < 3; a++) {
+                                let randAngle = Math.random() * Math.PI * 2;
+                                neutrons2.push({
+                                    x: atom.x,
+                                    y: atom.y,
+                                    vx: Math.cos(randAngle) * 3.5,
+                                    vy: Math.sin(randAngle) * 3.5
+                                });
+                            }
+                        }
+                    }
+                });
+
+                // Remove out-of-bounds neutrons
+                if (n.x < 0 || n.x > canvas2.width || n.y < 0 || n.y > canvas2.height) {
+                    neutrons2.splice(i, 1);
+                    i--;
+                }
+            }
+
+            requestAnimationFrame(gameLoop2);
+        }
+
+        // Initialize Simulators and Games
+        updateRadiationSim();
+        updateReactorSim();
+        gameLoop1();
+        initChainGame();
+        gameLoop2();
+    </script>
+</body>
+</html>
