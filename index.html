@@ -372,6 +372,7 @@
 </head>
 <body>
 
+    <!-- Header & Audio -->
     <header>
         <div class="logo">
             <span>☢️</span> NUCLIC PROJECT
@@ -383,6 +384,7 @@
         </div>
     </header>
 
+    <!-- Navigation Tabs -->
     <nav>
         <button class="nav-btn active" onclick="switchTab('home')">🏠 UTAMA</button>
         <button class="nav-btn" onclick="switchTab('materi')">📚 MATERI BACAAN</button>
@@ -438,11 +440,11 @@
                 
                 <div class="book-content" id="m1-page-1">
                     <p><strong>Halaman 1: Konsep Dasar Struktur Atom & Radioaktivitas</strong></p>
-                    <p>Radioaktivitas adalah fenomena pelepasan energi secara spontan oleh inti atom tidak stabil (radionuklida) menuju keadaan energi yang lebih stabil.</p>
+                    <p>Radioaktivitas adalah fenomena pelepasan energi secara spontan oleh inti atom tidak stabil (radionuklida) menuju keadaan energi yang lebih stabil. Atom terdiri dari proton dan neutron di dalam inti, dikelilingi oleh elektron.</p>
                     <ul>
-                        <li><strong>Partikel Alpha (α):</strong> Inti Helium (2 proton, 2 neutron). Daya tembus sangat rendah.</li>
-                        <li><strong>Partikel Beta (β):</strong> Elektron (β⁻) atau Positron (β⁺) berkecepatan tinggi.</li>
-                        <li><strong>Sinar Gamma (γ):</strong> Gelombang elektromagnetik energi tinggi tanpa massa.</li>
+                        <li><strong>Partikel Alpha (α):</strong> Inti Helium (2 proton, 2 neutron). Memiliki daya ionisasi tinggi namun daya tembus sangat rendah.</li>
+                        <li><strong>Partikel Beta (β):</strong> Elektron (β⁻) atau Positron (β⁺) berkecepatan tinggi. Memiliki daya tembus sedang.</li>
+                        <li><strong>Sinar Gamma (γ):</strong> Foton gelombang elektromagnetik energi tinggi tanpa massa. Daya tembus sangat tinggi.</li>
                     </ul>
                 </div>
 
@@ -467,12 +469,12 @@
             <div id="modul-2" class="pixel-box modul-page" style="display: none;">
                 <h2>L2: Radiasi Pengion dalam Keseharian 🍌</h2>
                 <div class="book-content" id="m2-page-1">
-                    <p><strong>Halaman 1: Banana Equivalent Dose (BED)</strong></p>
-                    <p>Pisang mengandung isotop radioaktif alami Kalium-40 (K-40). 1 BED = ~0.1 µSv.</p>
+                    <p><strong>Halaman 1: Sumber Radiasi Alami & Dosis Pisang</strong></p>
+                    <p>Banana Equivalent Dose (BED) digunakan untuk memberikan gambaran radiasi alami. 1 pisang mengandung ~0.1 µSv karena adanya isotop Kalium-40 (K-40).</p>
                 </div>
                 <div class="book-content" id="m2-page-2" style="display: none;">
-                    <p><strong>Halaman 2: Dosis Penerbangan & Medis</strong></p>
-                    <p>Penerbangan komersial memberikan ~3-5 µSv per jam. Rontgen dada memberikan ~100 µSv.</p>
+                    <p><strong>Halaman 2: Penerbangan Komersial & Dosis Medis</strong></p>
+                    <p>Penerbangan komersial memberikan ~3-5 µSv per jam. Rontgen dada medis memberikan ~100 µSv.</p>
                 </div>
                 <div class="book-pagination">
                     <button class="btn-action" onclick="changeBookPage(2, -1)">⬅️ Prev</button>
@@ -481,30 +483,31 @@
                 </div>
             </div>
 
-            <!-- MODUL 3 - 6 SINGKAT UNTUK STRUKTUR -->
+            <!-- MODUL 3 - 6 -->
             <div id="modul-3" class="pixel-box modul-page" style="display: none;">
-                <h2>L3: Efek Biologi Radiasi 🧬</h2>
-                <p>Radiolisis air menghasilkan radikal bebas yang memengaruhi struktur DNA sel.</p>
+                <h2>L3: Efek Biologi Radiasi Terhadap Tubuh 🧬</h2>
+                <p>Radiolisis air menghasilkan radikal bebas yang memicu kerusakan rantai DNA.</p>
             </div>
             <div id="modul-4" class="pixel-box modul-page" style="display: none;">
-                <h2>L4: Proteksi Radiasi (ALARA) 🛡️</h2>
-                <p>Prinsip ALARA: Meminimalkan Waktu, Memperbesar Jarak, dan Menggunakan Perisai.</p>
+                <h2>L4: 3 Prinsip Utama Proteksi Radiasi 🛡️</h2>
+                <p>Prinsip ALARA mengandalkan tiga pengendali utama: Waktu (Time), Jarak (Distance), dan Perisai (Shielding).</p>
             </div>
             <div id="modul-5" class="pixel-box modul-page" style="display: none;">
-                <h2>L5 & L6: PLTN & Energi 🏭</h2>
-                <p>Pembelahan fisi Uranium-235 menghasilkan energi panas untuk membangkitkan listrik.</p>
+                <h2>L5 & L6: Pemanfaatan Tenaga Nuklir & PLTN 🏭</h2>
+                <p>Reaksi fisi terkendali dari Uranium-235 menghasilkan energi panas untuk membangkitkan uap air dan memutar turbin listrik.</p>
             </div>
             <div id="modul-6" class="pixel-box modul-page" style="display: none;">
-                <h2>GL: Nuklir & Antariksa 👨‍🚀</h2>
-                <p>Generator RTG berbasis Plutonium-238 memberi daya pada wahana antariksa Voyager.</p>
+                <h2>GL: Nuklir & Teknologi Antariksa 👨‍🚀</h2>
+                <p>Generator RTG berbasis Plutonium-238 memasok listrik konstan untuk misi luar angkasa seperti Voyager dan Perseverance Rover.</p>
             </div>
         </div>
 
-        <!-- TAB 3: SIMULATOR (SAMA PERSIS LINK 1) -->
+        <!-- TAB 3: SIMULATOR (DIBUAT PERSIS KODE 1) -->
         <div id="simulasi" class="tab-content">
+            <!-- Simulator 1: Proteksi Radiasi (ALARA) -->
             <div class="pixel-box">
                 <h2>🎛️ Simulator 1: Proteksi Radiasi (ALARA)</h2>
-                <p>Atur jarak, waktu, dan perisai untuk menghitung akumulasi dosis radiasi:</p>
+                <p>Atur jarak, waktu, dan jenis perisai untuk melihat dampaknya pada Dosis Radiasi Diterima (µSv):</p>
 
                 <div class="sim-grid" style="margin-top: 15px;">
                     <div>
@@ -534,27 +537,28 @@
                 </div>
             </div>
 
+            <!-- Simulator 2: Kontrol Reaktor PLTN Advance -->
             <div class="pixel-box">
-                <h2>🏭 Simulator 2: Kontrol Reaktor PLTN</h2>
-                <p>Atur Batang Kendali dan Pompa Pendingin untuk menjaga stabilitas Reaktor:</p>
+                <h2>🏭 Simulator 2: Kontrol Reaktor PLTN Advance</h2>
+                <p>Seimbangkan Batang Kendali, Aliran Pendingin, dan Pantau Fluks Neutron & Efisiensi Termal:</p>
 
                 <div class="sim-grid" style="margin-top: 15px;">
                     <div>
-                        <label>🕹️ Batang Kendali: <span id="rodVal">50</span>% Extracted</label>
+                        <label>🕹️ Batang Kendali (Control Rods): <span id="rodVal">50</span>% Extracted</label>
                         <input type="range" id="rodRange" min="0" max="100" value="50" style="width:100%;">
 
-                        <label style="margin-top: 10px; display:block;">💧 Pompa Pendingin: <span id="coolVal">50</span>% Flow</label>
+                        <label style="margin-top: 10px; display:block;">💧 Pompa Pendingin (Coolant): <span id="coolVal">50</span>% Flow</label>
                         <input type="range" id="coolRange" min="0" max="100" value="50" style="width:100%;">
 
                         <button class="btn-action" id="scramBtn" style="background: var(--grapefruit-pink); color: #fff; margin-top: 15px; width: 100%;">🚨 EMERGENCY SCRAM SHUTDOWN</button>
                     </div>
 
                     <div style="background: var(--cloud-puff); padding: 15px; border-radius: 8px; text-align: center;">
-                        <p>⚛️ Fluks Neutron: <strong id="fluxDisplay">1.75 x 10¹³ n/cm²s</strong></p>
-                        <p>🔥 Suhu Teras: <strong id="tempDisplay">350 °C</strong></p>
+                        <p>⚛️ Fluks Neutron (Flux): <strong id="fluxDisplay">1.75 x 10¹³ n/cm²s</strong></p>
+                        <p>🔥 Suhu Teras Reaktor: <strong id="tempDisplay">350 °C</strong></p>
                         <div class="gauge-container"><div id="tempBar" class="gauge-bar" style="background: #e74c3c;"></div></div>
 
-                        <p style="margin-top: 10px;">⚡ Daya Listrik: <strong id="powerDisplay">600 MW</strong></p>
+                        <p style="margin-top: 10px;">⚡ Daya Listrik Termal: <strong id="powerDisplay">600 MW</strong></p>
                         <div class="gauge-container"><div id="powerBar" class="gauge-bar" style="background: #2ecc71;"></div></div>
 
                         <div id="reactorWarning" style="margin-top: 10px; font-family: var(--pixel-font); font-size: 0.7rem; color: green;">SISTEM STABIL</div>
@@ -578,7 +582,7 @@
             <div class="pixel-box game-wrapper" style="margin-top: 25px;">
                 <h2>⚛️ GAME 2: CHAIN REACTION SIMULATOR</h2>
                 <div class="game-controls-bar">
-                    <span style="font-family: var(--pixel-font); font-size: 0.8rem;">COMBO: <span id="chainScore">0</span></span>
+                    <span style="font-family: var(--pixel-font); font-size: 0.8rem;">REAKSI COMBO: <span id="chainScore">0</span></span>
                     <button class="btn-action" style="margin-top:0;" id="resetGame2Btn">🔁 Reset Atom</button>
                 </div>
                 <canvas id="chainCanvas" width="480" height="320"></canvas>
@@ -588,18 +592,38 @@
         <!-- TAB 5: TIM KAMI -->
         <div id="tim" class="tab-content">
             <div class="pixel-box">
-                <h2>🐾 Tim Project Outreach</h2>
+                <h2>🐾 Anggota Tim Project Outreach (6 Member)</h2>
             </div>
             <div class="team-grid">
                 <div class="member-card">
                     <div class="avatar-pixel">🐱</div>
-                    <h3>Fachry Bagus Adiputra</h3>
-                    <span class="badge">Idea Developer</span>
+                    <h3>Fachry Bagus Adiputra - SMAN 1 Karawang</h3>
+                    <span class="badge">Pembenci Pisang & Idea Developer</span>
                 </div>
                 <div class="member-card">
                     <div class="avatar-pixel">🦊</div>
-                    <h3>Anindya Pramidita Rarasati</h3>
-                    <span class="badge">Web Coder</span>
+                    <h3>Anindya Pramidita Rarasati - SMA Wardaya</h3>
+                    <span class="badge">Web Coder & Designer</span>
+                </div>
+                <div class="member-card">
+                    <div class="avatar-pixel">🐻</div>
+                    <h3>Danela Safira Azahra - SMAN 9 Tangsel</h3>
+                    <span class="badge">Videographer & Editor</span>
+                </div>
+                <div class="member-card">
+                    <div class="avatar-pixel">🐧</div>
+                    <h3>Hafidz Akbar Zulfahidli - SMAIT Insan Mandiri</h3>
+                    <span class="badge">Korban Pisang</span>
+                </div>
+                <div class="member-card">
+                    <div class="avatar-pixel">🦝</div>
+                    <h3>Novrizal Fahreza - SMAN 12 Tangsel</h3>
+                    <span class="badge">Pecandu Pisang</span>
+                </div>
+                <div class="member-card">
+                    <div class="avatar-pixel">🦉</div>
+                    <h3>Jeremy Vanco - SMK Migas Cepu</h3>
+                    <span class="badge">Korban Pisang</span>
                 </div>
             </div>
         </div>
@@ -610,11 +634,10 @@
         <p>© 2026 NUCLIC Outreach Project - BRIN & IRIFair</p>
     </footer>
 
-    <!-- SCRIPT UTAMA PERBAIKAN AKSI & EFEK -->
+    <!-- JAVASCRIPT SIMULATOR & INTERAKSI (PERSIS KODE 1) -->
     <script>
-        // Gunakan EventListener agar fungsi tereksekusi aman setelah dokumen siap
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             // --- TAB SWITCHING ---
             window.switchTab = function(tabId) {
                 document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -634,7 +657,7 @@
                 if(event && event.currentTarget) event.currentTarget.classList.add('active');
             };
 
-            // --- PAGINATION BUKU ---
+            // --- BUKU PAGINATION ---
             const currentPages = { 1: 1, 2: 1 };
             window.changeBookPage = function(modNum, delta) {
                 let cur = currentPages[modNum] || 1;
@@ -647,7 +670,7 @@
                 }
             };
 
-            // --- SIMULATOR 1: ALARA ---
+            // --- SIMULATOR 1: ALARA (RUMUS & MECHANIC PERSIS KODE 1) ---
             const distRange = document.getElementById('distRange');
             const timeRange = document.getElementById('timeRange');
             const shieldSelect = document.getElementById('shieldSelect');
@@ -677,7 +700,7 @@
                     status.style.color = 'green';
                 } else if (dose < 120) {
                     doseBar.style.background = '#FFCB77';
-                    status.innerText = 'Status: Moderat ⚠️';
+                    status.innerText = 'Status: Moderat / Perlu Pengawasan ⚠️';
                     status.style.color = '#d35400';
                 } else {
                     doseBar.style.background = '#FE6D73';
@@ -690,7 +713,7 @@
             timeRange.addEventListener('input', updateRadiationSim);
             shieldSelect.addEventListener('change', updateRadiationSim);
 
-            // --- SIMULATOR 2: REAKTOR PLTN ---
+            // --- SIMULATOR 2: KONTROL REAKTOR PLTN (PERSIS KODE 1) ---
             const rodRange = document.getElementById('rodRange');
             const coolRange = document.getElementById('coolRange');
             const scramBtn = document.getElementById('scramBtn');
@@ -719,7 +742,7 @@
                     warn.innerText = '🚨 BAHAYA: OVERHEAT REAKTOR!';
                     warn.style.color = 'red';
                 } else if (temp < 250) {
-                    warn.innerText = '❄️ SUB-OPTIMAL';
+                    warn.innerText = '❄️ SUB-OPTIMAL (Suhu Terlalu Rendah)';
                     warn.style.color = '#3498db';
                 } else {
                     warn.innerText = '✅ SISTEM STABIL & OPTIMAL';
@@ -736,7 +759,7 @@
                 updateReactorSim();
             });
 
-            // Jalankan hitungan kalkulasi awal
+            // Jalankan kalkulasi awal saat halaman dimuat
             updateRadiationSim();
             updateReactorSim();
 
@@ -756,7 +779,7 @@
                         type: Math.random() > 0.3 ? 'good' : 'bad'
                     });
                 }
-            }, 1200);
+            }, 1000);
 
             canvas1.addEventListener('mousemove', (e) => {
                 const rect = canvas1.getBoundingClientRect();
@@ -813,10 +836,10 @@
             function initGame2() {
                 atoms2 = []; neutrons2 = []; chainScore = 0;
                 document.getElementById('chainScore').innerText = '0';
-                for (let i = 0; i < 30; i++) {
+                for (let i = 0; i < 35; i++) {
                     atoms2.push({
-                        x: 20 + Math.random() * (canvas2.width - 40),
-                        y: 20 + Math.random() * (canvas2.height - 40),
+                        x: 30 + Math.random() * (canvas2.width - 60),
+                        y: 30 + Math.random() * (canvas2.height - 60),
                         split: false
                     });
                 }
@@ -858,7 +881,7 @@
                             document.getElementById('chainScore').innerText = chainScore;
                             for (let a = 0; a < 3; a++) {
                                 let ang = Math.random() * Math.PI * 2;
-                                neutrons2.push({ x: atom.x, y: atom.y, vx: Math.cos(ang) * 3, vy: Math.sin(ang) * 3 });
+                                neutrons2.push({ x: atom.x, y: atom.y, vx: Math.cos(ang) * 3.5, vy: Math.sin(ang) * 3.5 });
                             }
                         }
                     });
